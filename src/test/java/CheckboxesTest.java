@@ -44,6 +44,6 @@ public class CheckboxesTest {
         // Проверяем, что состояние изменилось
         Assert.assertFalse(secondCheckbox.isSelected(), "После клика чекбокс должен быть не отмечен");
 
-        //driver.quit();
+        driver.quit();
     }
 }
