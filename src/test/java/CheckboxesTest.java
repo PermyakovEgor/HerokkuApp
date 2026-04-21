@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
@@ -20,6 +21,7 @@ public class CheckboxesTest {
 
         //Определяем браузер в котором хотим работать
         WebDriver driver = new ChromeDriver(options);
+        SoftAssert softAssert = new SoftAssert();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
@@ -30,11 +32,11 @@ public class CheckboxesTest {
         WebElement firstCheckbox = driver.findElements(By.cssSelector("[type=checkbox]")).get(0);
         // Проверяем исходное состояние (отмечен ли)
         boolean checkbox1 = firstCheckbox.isSelected();
-        Assert.assertFalse(checkbox1, "Первый чекбокс должен быть не отмечен");
+        softAssert.assertFalse(checkbox1, "Первый чекбокс должен быть не отмечен");
         // Кликаем, чтобы изменить состояние
         firstCheckbox.click();
         // Проверяем, что состояние изменилось
-        Assert.assertTrue(firstCheckbox.isSelected(), "После клика чекбокс должен быть отмечен");
+        softAssert.assertTrue(firstCheckbox.isSelected(), "После клика чекбокс должен быть отмечен");
 
         WebElement secondCheckbox = driver.findElements(By.cssSelector("[type=checkbox]")).get(1);
         boolean checkbox2 = secondCheckbox.isSelected();
@@ -42,8 +44,10 @@ public class CheckboxesTest {
         // Кликаем, чтобы изменить состояние
         secondCheckbox.click();
         // Проверяем, что состояние изменилось
-        Assert.assertFalse(secondCheckbox.isSelected(), "После клика чекбокс должен быть не отмечен");
+        softAssert.assertFalse(secondCheckbox.isSelected(), "После клика чекбокс должен быть не отмечен");
 
         driver.quit();
+
+        softAssert.assertAll();
     }
 }

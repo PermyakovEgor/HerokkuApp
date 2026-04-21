@@ -28,7 +28,7 @@ public class NotificationTest {
             driver.get("https://the-internet.herokuapp.com/notification_message_rendered");
 
             // Находим и кликаем на кнопку
-            WebElement clickHere = driver.findElement(By.linkText("Click here"));
+            WebElement clickHere = driver.findElement(By.linkText("Click here")); //linkText так как есть ссылочные теги
             clickHere.click();
 
             // Ждём появления уведомления (по id, по классу не понял как, когда класс с пробелом)
