@@ -25,7 +25,6 @@ public class FrameTest {
         options.addArguments("--disable-notfication");
         WebDriver driver = new ChromeDriver(options);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         //Открывает страницу по указанному url
         driver.get("https://the-internet.herokuapp.com/frames");
 
@@ -33,9 +32,7 @@ public class FrameTest {
         driver.switchTo().frame("mce_0_ifr");
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='tinymce']/p")));
         softAssert.assertEquals(element.getText(), "Your content goes here.", "Текст в параграфе не соответствует ожидаемому");
-
         driver.quit();
-
         softAssert.assertAll();
     }
 }

@@ -23,26 +23,19 @@ public class ContextMenuTest {
         options.addArguments("--start-maximized");
         options.addArguments("--incognito");
         options.addArguments("--disable-notfication");
-
         //Определяем браузер в котором хотим работать
         WebDriver driver = new ChromeDriver(options);
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
 
         //Открывает страницу по указанному url
         driver.get("https://the-internet.herokuapp.com/context_menu");
-
         //Находим элемент и кликаем правой кнопкой мыши
         WebElement element = driver.findElement(By.id("hot-spot"));
         Actions actions = new Actions(driver);
         actions.contextClick(element).perform();
-
         //Переключаемся в алерт и выводим текст
         Alert alert = driver.switchTo().alert();
         Assert.assertEquals(alert.getText(), "You selected a context menu", "Алерт не открылся");
         driver.quit();
-
-        softAssert.assertAll();
     }
 }

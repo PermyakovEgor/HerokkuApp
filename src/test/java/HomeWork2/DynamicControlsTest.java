@@ -51,9 +51,7 @@ public class DynamicControlsTest {
                 "It's enabled!"
         ));
         softAssert.assertTrue(inputElement.isEnabled(), "Поле инпут по прежнему disabled");
-
         driver.quit();
-
         softAssert.assertAll();
     }
 }

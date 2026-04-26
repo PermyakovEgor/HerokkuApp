@@ -21,13 +21,10 @@ public class DownloadFileTest {
         chromePrefs.put("profile.default_content_settings.popups", 0);
         chromePrefs.put("download.default_directory", "C:\\Users\\Perffi\\Downloads");
         options.setExperimentalOption("prefs", chromePrefs);
-
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notfications");
         WebDriver driver = new ChromeDriver(options);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-
         //Открывает страницу по указанному url
         driver.get("https://the-internet.herokuapp.com/download");
 
@@ -38,7 +35,6 @@ public class DownloadFileTest {
         File downloadFolder = new File("C:\\Users\\Perffi\\Downloads");
 
         Thread.sleep(3000);
-
         //Поиск файлов в папке
         File[] listOfFiles = downloadFolder.listFiles();
         File f = null;
@@ -54,9 +50,7 @@ public class DownloadFileTest {
             }
         }
         Assert.assertEquals(f.toString(), downloadLink.getText(), "Не нашло скачанного файла");
-
         downloadedFile.deleteOnExit();
-
         driver.quit();
     }
 }
